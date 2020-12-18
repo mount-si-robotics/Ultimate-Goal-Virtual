@@ -115,22 +115,22 @@ public class SimpleAutonomousPark extends LinearOpMode {
         );
 
     }
-    public void moveRight(double inches, double speed){
+    public void moveLeft(double inches, double speed){
 
         this.moveHorizontal(inches, speed, true);
 
     }
-    public void moveRight(double inches){
+    public void moveLeft(double inches){
 
         this.moveRight(inches, .2);
 
     }
-    public void moveLeft(double inches, double speed){
+    public void moveRight(double inches, double speed){
 
         this.moveHorizontal(inches, speed, false);
 
     }
-    public void moveLeft(double inches){
+    public void moveRight(double inches){
 
         this.moveLeft(inches, .2);
 
