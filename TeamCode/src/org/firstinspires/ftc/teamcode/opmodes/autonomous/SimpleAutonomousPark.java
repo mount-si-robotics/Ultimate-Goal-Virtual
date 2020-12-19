@@ -20,14 +20,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
         MecanumHardwareInterface hardwareInterface = new MecanumHardwareInterface(hardwareMap);
 
-        this.moveForwards(25, .3);
-        this.moveBackwards(25, .3);
-
-        this.moveLeft(25, .3);
-        this.moveRight(25, .3);
-
-        this.turnClockwise(25, .3);
-        this.turnCounterClockwise(25, .3);
+        this.deliverTargetC(1);
 
         hardwareInterface.setDriveMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -122,7 +115,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
     }
     public void moveLeft(double inches){
 
-        this.moveRight(inches, .2);
+        this.moveLeft(inches, .2);
 
     }
     public void moveRight(double inches, double speed){
@@ -132,7 +125,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
     }
     public void moveRight(double inches){
 
-        this.moveLeft(inches, .2);
+        this.moveRight(inches, .2);
 
     }
 
@@ -276,6 +269,37 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
 
     // ----------------------------------------------------------------------------------------- //
+    // Super high level methods.
 
+    // Red alliance.
+    public void deliverTargetC(double speed){
+
+        // Move the left wobble goal up 10 feet.
+        this.moveLeft(20, speed);
+        this.moveForwards(115, speed);
+
+        // Back out a little and get to a position to push the goal into the corner
+        this.moveBackwards(10, speed);
+        this.moveLeft(20, speed);
+        this.moveForwards(20, speed);
+
+        // Push the goal into the corner.
+        this.moveRight(45, speed);
+
+        // Move back to push the other goal.
+        this.moveLeft(40, speed);
+        this.moveBackwards(110, speed);
+
+        // Push the other goal further to the wall, and reposition to get under it.
+        this.moveRight(37, speed);
+        this.moveLeft(10, speed);
+        this.moveBackwards(15, speed);
+        this.moveRight(25, speed);
+
+        // Push the final goal to the top, then go down to park.
+        this.moveForwards(115, speed);
+        this.moveBackwards(40, speed);
+
+    }
 
 }
