@@ -754,34 +754,34 @@ public class UltimateBot extends VirtualBot {
          *
          * A GroupWithDGeoms
          */
-        PhongMaterial grabberMaterial = new PhongMaterial(Color.CORAL);
-        PhongMaterial handMaterial = new PhongMaterial(Color.BROWN);
-        grabber = new GroupWithDGeoms();
-        BoxWithDGeom arm = new BoxWithDGeom(7.5, 20, 3.0, fxBody);
-        GroupWithDGeoms leftHand = new GroupWithDGeoms();
-        BoxWithDGeom leftMetacarpal = new BoxWithDGeom(2.5, 2.5, 3.0, fxBody);
-        leftMetacarpal.getTransforms().add(new Translate(1.25, 1.25, 0));
-        BoxWithDGeom leftPhalanx = new BoxWithDGeom(3.75, 2.5, 3.0, fxBody);
-        leftPhalanx.getTransforms().add(new Translate(3.75/2, 3.75, 0));
-        leftHand.getChildren().addAll(leftMetacarpal, leftPhalanx);
-        GroupWithDGeoms rightHand = new GroupWithDGeoms();
-        BoxWithDGeom rightMetacarpal = new BoxWithDGeom(2.5, 2.5, 3.0, fxBody);
-        rightMetacarpal.getTransforms().add(new Translate(-1.25, 1.25, 0));
-        BoxWithDGeom rightPhalanx = new BoxWithDGeom(3.75, 2.5, 3.0, fxBody);
-        rightPhalanx.getTransforms().add(new Translate(-3.75/2, 3.75, 0));
-        rightHand.getChildren().addAll(rightMetacarpal, rightPhalanx);
-        arm.getTransforms().add(new Translate(0, 10, 0));
-        leftHand.getTransforms().addAll(new Translate(-3.75, 20, 0), leftHandRotate);
-        rightHand.getTransforms().addAll(new Translate(3.75, 20, 0), rightHandRotate);
-        grabber.getChildren().addAll(arm, leftHand, rightHand);
-        grabber.getTransforms().addAll(new Translate(-17.75, 18.75, 14), grabberRotate);
-        arm.setMaterial(grabberMaterial);
-        leftMetacarpal.setMaterial(handMaterial);
-        leftPhalanx.setMaterial(handMaterial);
-        rightMetacarpal.setMaterial(handMaterial);
-        rightPhalanx.setMaterial(handMaterial);
-        grabber.updateGeomOffsets();
-        botGroup.getChildren().add(grabber);
+        //        PhongMaterial grabberMaterial = new PhongMaterial(Color.CORAL);
+        //        PhongMaterial handMaterial = new PhongMaterial(Color.BROWN);
+        //        grabber = new GroupWithDGeoms();
+        //        BoxWithDGeom arm = new BoxWithDGeom(7.5, 20, 3.0, fxBody);
+        //        GroupWithDGeoms leftHand = new GroupWithDGeoms();
+        //        BoxWithDGeom leftMetacarpal = new BoxWithDGeom(2.5, 2.5, 3.0, fxBody);
+        //        leftMetacarpal.getTransforms().add(new Translate(1.25, 1.25, 0));
+        //        BoxWithDGeom leftPhalanx = new BoxWithDGeom(3.75, 2.5, 3.0, fxBody);
+        //        leftPhalanx.getTransforms().add(new Translate(3.75/2, 3.75, 0));
+        //        leftHand.getChildren().addAll(leftMetacarpal, leftPhalanx);
+        //        GroupWithDGeoms rightHand = new GroupWithDGeoms();
+        //        BoxWithDGeom rightMetacarpal = new BoxWithDGeom(2.5, 2.5, 3.0, fxBody);
+        //        rightMetacarpal.getTransforms().add(new Translate(-1.25, 1.25, 0));
+        //        BoxWithDGeom rightPhalanx = new BoxWithDGeom(3.75, 2.5, 3.0, fxBody);
+        //        rightPhalanx.getTransforms().add(new Translate(-3.75/2, 3.75, 0));
+        //        rightHand.getChildren().addAll(rightMetacarpal, rightPhalanx);
+        //        arm.getTransforms().add(new Translate(0, 10, 0));
+        //        leftHand.getTransforms().addAll(new Translate(-3.75, 20, 0), leftHandRotate);
+        //        rightHand.getTransforms().addAll(new Translate(3.75, 20, 0), rightHandRotate);
+        //        grabber.getChildren().addAll(arm, leftHand, rightHand);
+        //        grabber.getTransforms().addAll(new Translate(-17.75, 18.75, 14), grabberRotate);
+        //        arm.setMaterial(grabberMaterial);
+        //        leftMetacarpal.setMaterial(handMaterial);
+        //        leftPhalanx.setMaterial(handMaterial);
+        //        rightMetacarpal.setMaterial(handMaterial);
+        //        rightPhalanx.setMaterial(handMaterial);
+        //        grabber.updateGeomOffsets();
+        //        botGroup.getChildren().add(grabber);
 
         /*
          * Set the value of the zBase field of the superclass (VirtualBot).
@@ -804,11 +804,11 @@ public class UltimateBot extends VirtualBot {
         shooterTop.getDGeom().setCategoryBits(CBits.SHOOTER);
         backShooterRail.getDGeom().setCategoryBits(CBits.SHOOTER);
         shooterWheel.getDGeom().setCategoryBits(CBits.SHOOTER);
-        leftMetacarpal.getDGeom().setCategoryBits(CBits.HAND);
-        rightMetacarpal.getDGeom().setCategoryBits(CBits.HAND);
-        arm.getDGeom().setCategoryBits(CBits.ARM);
-        leftPhalanx.getDGeom().setCategoryBits(CBits.HAND);
-        rightPhalanx.getDGeom().setCategoryBits(CBits.HAND);
+        //        leftMetacarpal.getDGeom().setCategoryBits(CBits.HAND);
+        //        rightMetacarpal.getDGeom().setCategoryBits(CBits.HAND);
+        //        arm.getDGeom().setCategoryBits(CBits.ARM);
+        //        leftPhalanx.getDGeom().setCategoryBits(CBits.HAND);
+        //        rightPhalanx.getDGeom().setCategoryBits(CBits.HAND);
     }
 
 
@@ -824,7 +824,7 @@ public class UltimateBot extends VirtualBot {
         grabberRotate.setAngle(grabberRotation);
         leftHandRotate.setAngle(leftHandRotation);
         rightHandRotate.setAngle(rightHandRotation);
-        grabber.updateGeomOffsets();
+//        grabber.updateGeomOffsets();
         shooter.updateGeomOffsets();
     }
 
