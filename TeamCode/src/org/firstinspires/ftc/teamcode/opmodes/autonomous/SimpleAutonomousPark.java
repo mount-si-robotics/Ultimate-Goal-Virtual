@@ -20,14 +20,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
         MecanumHardwareInterface hardwareInterface = new MecanumHardwareInterface(hardwareMap);
 
-        this.moveForwards(25, .3);
-        this.moveBackwards(25, .3);
-
-        this.moveLeft(25, .3);
-        this.moveRight(25, .3);
-
-        this.turnClockwise(25, .3);
-        this.turnCounterClockwise(25, .3);
+        this.deliverTargetC(false);
 
         hardwareInterface.setDriveMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -115,24 +108,24 @@ public class SimpleAutonomousPark extends LinearOpMode {
         );
 
     }
-    public void moveRight(double inches, double speed){
-
-        this.moveHorizontal(inches, speed, true);
-
-    }
-    public void moveRight(double inches){
-
-        this.moveRight(inches, .2);
-
-    }
     public void moveLeft(double inches, double speed){
 
-        this.moveHorizontal(inches, speed, false);
+        this.moveHorizontal(inches, speed, true);
 
     }
     public void moveLeft(double inches){
 
         this.moveLeft(inches, .2);
+
+    }
+    public void moveRight(double inches, double speed){
+
+        this.moveHorizontal(inches, speed, false);
+
+    }
+    public void moveRight(double inches){
+
+        this.moveRight(inches, .2);
 
     }
 
@@ -276,6 +269,132 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
 
     // ----------------------------------------------------------------------------------------- //
+    // Super high level methods.
+
+    // These methods will deliver both wobble goals to their respective target zones.
+    public void deliverTargetC(boolean blueAlliance){
+
+        /**
+         * Speed control.
+         * This only works on 1 due to the friction caused by the arm on the simulated robot.
+         * Once that is gone, theoretically everything should be fine.
+         **/
+        double speed = 1;
+
+        // Move the left wobble goal up 10 feet.
+        this.moveHorizontal(20, speed, !blueAlliance);
+        this.moveForwards(115, speed);
+
+        // Back out a little and get to a position to push the goal into the corner
+        this.moveBackwards(10, speed);
+        this.moveHorizontal(20, speed, !blueAlliance);
+        this.moveForwards(20, speed);
+
+        // Push the goal into the corner.
+        this.moveHorizontal(45, speed, blueAlliance);
+
+
+        // Move back to push the other goal.
+        this.moveHorizontal(40, speed, !blueAlliance);
+
+        this.moveBackwards(110, speed);
+
+        // Push the other goal further to the wall, and reposition to get under it.
+        this.moveHorizontal(40, speed, blueAlliance);
+        this.moveHorizontal(10, speed, !blueAlliance);
+
+        this.moveBackwards(15, speed);
+        this.moveHorizontal(25, speed, blueAlliance);
+
+
+        // Push the final goal to the top, then go down to park.
+        this.moveForwards(115, speed);
+        this.moveBackwards(40, speed);
+
+    }
+    public void deliverTargetB(boolean blueAlliance){
+
+        /**
+         * Speed control.
+         * This only works on 1 due to the friction caused by the arm on the simulated robot.
+         * Once that is gone, theoretically everything should be fine.
+         **/
+        double speed = 1;
+
+        // Move the left wobble goal up to the level of zone B.
+        this.moveHorizontal(20, speed, !blueAlliance);
+        this.moveForwards(95, speed);
+
+        // Back out a little and get to a position to push the goal into the zone.
+        this.moveBackwards(10, speed);
+        this.moveHorizontal(17, speed, !blueAlliance);
+        this.moveForwards(20, speed);
+
+        // Push the goal into the zone.
+        this.moveHorizontal(13, speed, blueAlliance);
+
+        // Move back to push the other goal.
+        this.moveHorizontal(7, speed, !blueAlliance);
+        this.moveBackwards(100, speed);
+        this.moveHorizontal(40, speed, blueAlliance);
+
+        // Push the remaining wobble goal to up to the same level as target B.
+        this.moveForwards(90, speed);
+
+        // Get in position to push the wobble goal into the zone.
+        this.moveBackwards(10, speed);
+        this.moveHorizontal(19, speed, blueAlliance);
+        this.moveForwards(15, speed);
+
+        // Move the goal and park over the line.
+        this.moveHorizontal(15, speed, !blueAlliance);
+        this.moveBackwards(20, speed);
+
+    }
+    public void deliverTargetA(boolean blueAlliance){
+
+        /**
+         * Speed control.
+         * This only works on 1 due to the friction caused by the arm on the simulated robot.
+         * Once that is gone, theoretically everything should be fine.
+         **/
+        double speed = 1;
+
+        // Move the left wobble goal up 10 feet.
+        this.moveHorizontal(20, speed, !blueAlliance);
+        this.moveForwards(75, speed);
+
+        // Back out a little and get to a position to push the goal into the corner
+        this.moveBackwards(10, speed);
+        this.moveHorizontal(20, speed, !blueAlliance);
+        this.moveForwards(20, speed);
+
+        // Push the goal into the corner.
+        this.moveHorizontal(45, speed, blueAlliance);
+
+
+        // Move back to push the other goal.
+        this.moveHorizontal(30, speed, !blueAlliance);
+
+        this.moveBackwards(70, speed);
+
+        // Push the other goal further to the wall, and reposition to get under it.
+        this.moveHorizontal(30, speed, blueAlliance);
+        this.moveHorizontal(10, speed, !blueAlliance);
+
+        this.moveBackwards(15, speed);
+        this.moveHorizontal(25, speed, blueAlliance);
+
+
+        // Push the final goal to the top, then go down to park.
+        this.moveForwards(70, speed);
+        this.moveBackwards(10, speed);
+
+        // Park over the line.
+        this.moveHorizontal(30, speed, !blueAlliance);
+        this.moveForwards(20, speed);
+
+    }
 
 
 }
