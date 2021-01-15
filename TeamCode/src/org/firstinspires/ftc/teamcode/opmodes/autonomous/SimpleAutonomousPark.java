@@ -18,7 +18,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        MecanumHardwareInterface hardwareInterface = new MecanumHardwareInterface(hardwareMap);
+        AutonomousMecanumHardwareInterface hardwareInterface = new AutonomousMecanumHardwareInterface(hardwareMap);
 
         this.deliverTargetC(false);
 
@@ -41,7 +41,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
         }
 
         // Initialize interface object and target position.
-        MecanumHardwareInterface hardwareInterface = new MecanumHardwareInterface(hardwareMap);
+        AutonomousMecanumHardwareInterface hardwareInterface = new AutonomousMecanumHardwareInterface(hardwareMap);
 
         // Move.
         this.setMotorDirections(
@@ -91,7 +91,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
         }
 
         // Initialize interface object and target position.
-        MecanumHardwareInterface hardwareInterface = new MecanumHardwareInterface(hardwareMap);
+        AutonomousMecanumHardwareInterface hardwareInterface = new AutonomousMecanumHardwareInterface(hardwareMap);
 
         // Move.
         this.setMotorDirections(
@@ -141,7 +141,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
         }
 
         // Initialize interface object and target position.
-        MecanumHardwareInterface hardwareInterface = new MecanumHardwareInterface(hardwareMap);
+        AutonomousMecanumHardwareInterface hardwareInterface = new AutonomousMecanumHardwareInterface(hardwareMap);
 
         // Move.
         this.setMotorDirections(
@@ -181,7 +181,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
     // Master movement methods.
     /** DO NOT USE THIS. This is just a backend function made to minimize redundancy. **/
-    private void moveMaster(MecanumHardwareInterface hardwareInterface, double inches, double speed){
+    private void moveMaster(AutonomousMecanumHardwareInterface hardwareInterface, double inches, double speed){
 
         // Return early if speed or inches are 0.
         if(inches == 0 || speed == 0){
@@ -235,7 +235,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
     // True means forward, false means backwards.
     // Takes in a hardware interface object as well as four booleans representing each motor.
-    private void setMotorDirections(MecanumHardwareInterface hardwareInterface, boolean frontRight, boolean frontLeft, boolean rearRight, boolean rearLeft){
+    private void setMotorDirections(AutonomousMecanumHardwareInterface hardwareInterface, boolean frontRight, boolean frontLeft, boolean rearRight, boolean rearLeft){
 
         // Set direction for the frontRight motor.
         if(!frontRight) {
