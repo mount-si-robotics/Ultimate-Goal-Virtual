@@ -24,6 +24,10 @@ public class SimpleTeleOp extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
 
+    private double calculateWheelCoefficient(double course, double wheelAngle) {
+        return (Math.cos(course)-Math.sin(course)/Math.tan(wheelAngle))*Math.signum(wheelAngle);
+    }
+
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -33,21 +37,21 @@ public class SimpleTeleOp extends LinearOpMode {
 
         waitForStart();
         while (opModeIsActive()) {
-            double right_stick_x = gamepad1.right_stick_x;
-//            double right_stick_y = gamepad1.right_stick_y;
+            /*
+                Forward = 0,
+                Backward = 180,
+                Left = 90,
+                Right = -90
+             */
 
-            hardwareInterface.driveFrontLeft.setPower(right_stick_x);
-            hardwareInterface.driveFrontRight.setPower(-right_stick_x);
-            hardwareInterface.driveRearLeft.setPower(right_stick_x);
-            hardwareInterface.driveRearRight.setPower(-right_stick_x);
+            double course = -Math.atan2(gamepad1.left_stick_y, -gamepad1.left_stick_x) - Math.PI/2;
+            double velocity = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
+            double rotation = -gamepad1.right_stick_x;
 
-//            double left_stick_x = gamepad1.left_stick_x;
-//            double left_stick_y = -gamepad1.left_stick_y;
-//
-//            hardwareInterface.driveFrontRight.setPower(-left_stick_x + left_stick_y);
-//            hardwareInterface.driveFrontLeft.setPower(left_stick_x + left_stick_y);
-//            hardwareInterface.driveRearRight.setPower(-left_stick_x + left_stick_y);
-//            hardwareInterface.driveRearLeft.setPower(left_stick_x + left_stick_y);
+            hardwareInterface.driveFrontLeft.setPower(calculateWheelCoefficient(course, -3*Math.PI/4) * velocity + rotation);
+            hardwareInterface.driveFrontRight.setPower(calculateWheelCoefficient(course, 3*Math.PI/4) * velocity + rotation);
+            hardwareInterface.driveRearLeft.setPower(calculateWheelCoefficient(course, Math.PI/4) * velocity + rotation);
+            hardwareInterface.driveRearRight.setPower(calculateWheelCoefficient(course, -Math.PI/4) * velocity + rotation);
 
             telemetry.addData("Elapsed Time", runtime.seconds());
             telemetry.update();
