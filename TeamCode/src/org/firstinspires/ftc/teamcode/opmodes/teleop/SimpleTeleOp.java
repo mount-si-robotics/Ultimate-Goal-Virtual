@@ -26,6 +26,7 @@ public class SimpleTeleOp extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -33,24 +34,28 @@ public class SimpleTeleOp extends LinearOpMode {
 
         waitForStart();
         while (opModeIsActive()) {
-            double right_stick_x = gamepad1.right_stick_x;
-//            double right_stick_y = gamepad1.right_stick_y;
 
-            hardwareInterface.driveFrontLeft.setPower(right_stick_x);
-            hardwareInterface.driveFrontRight.setPower(-right_stick_x);
-            hardwareInterface.driveRearLeft.setPower(right_stick_x);
-            hardwareInterface.driveRearRight.setPower(-right_stick_x);
+            // Important variables.
+            double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
+            // Remove the negative from left stick y if you're gross and want up/down inverted.
+            double robotAngle = Math.atan2(-gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
+            double rightX = gamepad1.right_stick_x;
 
-//            double left_stick_x = gamepad1.left_stick_x;
-//            double left_stick_y = -gamepad1.left_stick_y;
-//
-//            hardwareInterface.driveFrontRight.setPower(-left_stick_x + left_stick_y);
-//            hardwareInterface.driveFrontLeft.setPower(left_stick_x + left_stick_y);
-//            hardwareInterface.driveRearRight.setPower(-left_stick_x + left_stick_y);
-//            hardwareInterface.driveRearLeft.setPower(left_stick_x + left_stick_y);
+            // Less important variables.
+            // These are more just to reduce redundancy.
+            double cosVal = r * Math.cos(robotAngle);
+            double sinVal = r * Math.sin(robotAngle);
 
+            // Set wheel powers to what they need to be.
+            hardwareInterface.driveFrontLeft.setPower(cosVal + rightX);
+            hardwareInterface.driveFrontRight.setPower(sinVal - rightX);
+            hardwareInterface.driveRearLeft.setPower(sinVal + rightX);
+            hardwareInterface.driveRearRight.setPower(cosVal - rightX);
+
+            // Telemetry stuff.
             telemetry.addData("Elapsed Time", runtime.seconds());
             telemetry.update();
+
         }
     }
 }
