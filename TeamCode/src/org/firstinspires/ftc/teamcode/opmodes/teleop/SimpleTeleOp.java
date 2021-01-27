@@ -53,7 +53,10 @@ public class SimpleTeleOp extends LinearOpMode {
             hardwareInterface.driveRearRight.setPower(cosVal - rightX);
 
             // Telemetry stuff.
-            telemetry.addData("Elapsed Time", runtime.seconds());
+            telemetry.addData("Elapsed Time: ", runtime.seconds());
+            telemetry.addData("\nLeft X: ", gamepad1.left_stick_x);
+            telemetry.addData("Left Y: ", -gamepad1.left_stick_y);
+            telemetry.addData("\nRight X: ", rightX);
             telemetry.update();
 
         }
