@@ -58,14 +58,16 @@ public class SimpleTeleOp extends LinearOpMode {
 
             // Less important variables.
             // These are more just to reduce redundancy.
-            double cosVal = r * Math.cos(robotAngle);
-            double sinVal = r * Math.sin(robotAngle);
+            double xDisplacement = r * Math.cos(robotAngle);
+            double yDisplacement = r * Math.sin(robotAngle);
 
             // Set wheel powers to what they need to be.
-            hardwareInterface.driveFrontLeft.setPower(cosVal + rightStickX);
-            hardwareInterface.driveFrontRight.setPower(sinVal - rightStickX);
-            hardwareInterface.driveRearLeft.setPower(sinVal + rightStickX);
-            hardwareInterface.driveRearRight.setPower(cosVal - rightStickX);
+            // Front wheels will use xDisplacement, while rear wheels will use yDisplacement.
+            // Angle will be added to left wheels, while for right wheels it will be subtracted.
+            hardwareInterface.driveFrontLeft.setPower(xDisplacement + rightStickX);
+            hardwareInterface.driveRearLeft.setPower(yDisplacement + rightStickX);
+            hardwareInterface.driveFrontRight.setPower(yDisplacement - rightStickX);
+            hardwareInterface.driveRearRight.setPower(xDisplacement - rightStickX);
 
             // Telemetry stuff.
             telemetry.addData("Elapsed Time: ", runtime.seconds());
