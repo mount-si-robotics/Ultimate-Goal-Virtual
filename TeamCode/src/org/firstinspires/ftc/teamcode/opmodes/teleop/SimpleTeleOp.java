@@ -40,12 +40,12 @@ public class SimpleTeleOp extends LinearOpMode {
             // Important variables.
             double r = Math.hypot(leftStickX, leftStickY);
             // Remove the negative from left stick y if you're gross and want up/down inverted.
-            double robotAngle = Math.atan2(-leftStickY, leftStickX) - Math.PI / 4;
+            double hypotenuse = Math.atan2(-leftStickY, leftStickX) - Math.PI / 4;
 
             // Less important variables.
             // These are more just to reduce redundancy.
-            double xDisplacement = r * Math.cos(robotAngle);
-            double yDisplacement = r * Math.sin(robotAngle);
+            double xDisplacement = r * Math.cos(hypotenuse);
+            double yDisplacement = r * Math.sin(hypotenuse);
 
             // Set wheel powers to what they need to be.
             // Front wheels will use xDisplacement, while rear wheels will use yDisplacement.
