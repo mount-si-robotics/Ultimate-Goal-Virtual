@@ -22,6 +22,7 @@ public class TeleOpMecanumHardwareInterface {
 
         driveFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         driveRearRight.setDirection(DcMotorSimple.Direction.REVERSE);
+
     }
 
     public void setDriveMode(DcMotor.RunMode runMode) {
