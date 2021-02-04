@@ -22,6 +22,10 @@ public class SimpleTeleOp extends LinearOpMode {
         hardwareInterface.setDriveMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         waitForStart();
+
+        hardwareInterface.intakeMotor.setPower(1);
+        hardwareInterface.shooterMotor.setPower(1);
+
         while (opModeIsActive()) {
 
             double leftStickX = gamepad1.left_stick_x;
@@ -57,6 +61,10 @@ public class SimpleTeleOp extends LinearOpMode {
             hardwareInterface.driveRearLeft.setPower(yDisplacement + rightStickX);
             hardwareInterface.driveFrontRight.setPower(yDisplacement - rightStickX);
             hardwareInterface.driveRearRight.setPower(xDisplacement - rightStickX);
+
+            hardwareInterface.shooterTrigServo.setPosition(gamepad1.a ? 1 : 0);
+//            hardwareInterface.intakeMotor.setPower(gamepad1.a ? 1 : 0);
+//            hardwareInterface.shooterMotor.setPower(gamepad1.b ? 1 : 0);
 
             // Telemetry stuff.
             telemetry.addData("Elapsed Time: ", runtime.seconds());

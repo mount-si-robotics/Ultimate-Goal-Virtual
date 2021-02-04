@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.opmodes.teleop;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class TeleOpMecanumHardwareInterface {
     private HardwareMap internalHardwareMap;
@@ -11,6 +12,10 @@ public class TeleOpMecanumHardwareInterface {
     public DcMotor driveFrontRight;
     public DcMotor driveRearRight;
     public DcMotor driveRearLeft;
+
+    public Servo shooterTrigServo;
+    public DcMotor intakeMotor;
+    public DcMotor shooterMotor;
 
     public TeleOpMecanumHardwareInterface(HardwareMap hwMap) {
         this.internalHardwareMap = hwMap;
@@ -23,6 +28,9 @@ public class TeleOpMecanumHardwareInterface {
         driveFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         driveRearRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        shooterTrigServo = internalHardwareMap.servo.get("shooter_trig_servo");
+        intakeMotor = internalHardwareMap.dcMotor.get("intake_motor");
+        shooterMotor = internalHardwareMap.dcMotor.get("shooter_motor");
     }
 
     public void setDriveMode(DcMotor.RunMode runMode) {
