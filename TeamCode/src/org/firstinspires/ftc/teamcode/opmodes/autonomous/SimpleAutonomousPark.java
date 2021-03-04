@@ -8,17 +8,19 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 @Autonomous(name = "Simple Autonomous Park")
 public class SimpleAutonomousPark extends LinearOpMode {
 
-    // Values to hold on to.
+    // ------------------------------ //
+    // Instance variables.
+
     private final DcMotorSimple.Direction REVERSE = DcMotorSimple.Direction.REVERSE;
     private final DcMotorSimple.Direction FORWARD = DcMotorSimple.Direction.FORWARD;
 
-    // ----------------------------------------------------------------------------------------- //
+    // ------------------------------ //
     // Main methods.
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-        MecanumHardwareInterface hardwareInterface = new MecanumHardwareInterface(hardwareMap);
+        AutonomousMecanumHardwareInterface hardwareInterface = new AutonomousMecanumHardwareInterface(hardwareMap);
 
         this.deliverTargetC(false);
 
@@ -26,7 +28,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
     }
 
-    // ----------------------------------------------------------------------------------------- //
+    // ------------------------------ //
     // Methods.
 
     // Methods for moving forwards and backwards.
@@ -41,7 +43,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
         }
 
         // Initialize interface object and target position.
-        MecanumHardwareInterface hardwareInterface = new MecanumHardwareInterface(hardwareMap);
+        AutonomousMecanumHardwareInterface hardwareInterface = new AutonomousMecanumHardwareInterface(hardwareMap);
 
         // Move.
         this.setMotorDirections(
@@ -91,7 +93,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
         }
 
         // Initialize interface object and target position.
-        MecanumHardwareInterface hardwareInterface = new MecanumHardwareInterface(hardwareMap);
+        AutonomousMecanumHardwareInterface hardwareInterface = new AutonomousMecanumHardwareInterface(hardwareMap);
 
         // Move.
         this.setMotorDirections(
@@ -141,7 +143,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
         }
 
         // Initialize interface object and target position.
-        MecanumHardwareInterface hardwareInterface = new MecanumHardwareInterface(hardwareMap);
+        AutonomousMecanumHardwareInterface hardwareInterface = new AutonomousMecanumHardwareInterface(hardwareMap);
 
         // Move.
         this.setMotorDirections(
@@ -181,7 +183,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
     // Master movement methods.
     /** DO NOT USE THIS. This is just a backend function made to minimize redundancy. **/
-    private void moveMaster(MecanumHardwareInterface hardwareInterface, double inches, double speed){
+    private void moveMaster(AutonomousMecanumHardwareInterface hardwareInterface, double inches, double speed){
 
         // Return early if speed or inches are 0.
         if(inches == 0 || speed == 0){
@@ -214,17 +216,19 @@ public class SimpleAutonomousPark extends LinearOpMode {
     }
 
 
-    // ----------------------------------------------------------------------------------------- //
+    // ------------------------------ //
     // Helper methods.
 
     // Limits a given input between two ranges.
     private double limitToRange(double input, double min, double max){
 
-        if(input > max){
+        if(input > max)
+        {
 
             return max;
 
-        } else if(input < min){
+        }
+        else if(input < min){
 
             return min;
 
@@ -235,7 +239,7 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
     // True means forward, false means backwards.
     // Takes in a hardware interface object as well as four booleans representing each motor.
-    private void setMotorDirections(MecanumHardwareInterface hardwareInterface, boolean frontRight, boolean frontLeft, boolean rearRight, boolean rearLeft){
+    private void setMotorDirections(AutonomousMecanumHardwareInterface hardwareInterface, boolean frontRight, boolean frontLeft, boolean rearRight, boolean rearLeft){
 
         // Set direction for the frontRight motor.
         if(!frontRight) {
@@ -268,17 +272,12 @@ public class SimpleAutonomousPark extends LinearOpMode {
     }
 
 
-    // ----------------------------------------------------------------------------------------- //
-    // Super high level methods.
+    // ------------------------------ //
+    // Super mega ultra superior high level methods.
 
     // These methods will deliver both wobble goals to their respective target zones.
     public void deliverTargetC(boolean blueAlliance){
 
-        /**
-         * Speed control.
-         * This only works on 1 due to the friction caused by the arm on the simulated robot.
-         * Once that is gone, theoretically everything should be fine.
-         **/
         double speed = 1;
 
         // Move the left wobble goal up 10 feet.
@@ -314,11 +313,6 @@ public class SimpleAutonomousPark extends LinearOpMode {
     }
     public void deliverTargetB(boolean blueAlliance){
 
-        /**
-         * Speed control.
-         * This only works on 1 due to the friction caused by the arm on the simulated robot.
-         * Once that is gone, theoretically everything should be fine.
-         **/
         double speed = 1;
 
         // Move the left wobble goal up to the level of zone B.
@@ -353,11 +347,6 @@ public class SimpleAutonomousPark extends LinearOpMode {
     }
     public void deliverTargetA(boolean blueAlliance){
 
-        /**
-         * Speed control.
-         * This only works on 1 due to the friction caused by the arm on the simulated robot.
-         * Once that is gone, theoretically everything should be fine.
-         **/
         double speed = 1;
 
         // Move the left wobble goal up 10 feet.
