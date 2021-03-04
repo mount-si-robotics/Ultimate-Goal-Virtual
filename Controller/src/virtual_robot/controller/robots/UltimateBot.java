@@ -431,7 +431,7 @@ public class UltimateBot extends VirtualBot {
 
     private void shoot(){
         if (storedRings.size() == 0) return;
-        double shooterMotorPower = shooterMotor.getPower();
+        double shooterMotorPower = shooterMotor.getSpeed();
         if (shooterMotor.getDirection() == DcMotorSimple.Direction.REVERSE) shooterMotorPower *= -1;
         if (shooterMotorPower <= 0) return;
 
@@ -488,6 +488,7 @@ public class UltimateBot extends VirtualBot {
          * Added velocity of ring, in world coordinates, due to shooter action
          */
         DVector3 ringAddedVelocity = new DVector3();
+        System.out.println(shooterMotorPower);
         double shootSpeed = shooterMotorPower * 800;
         ringAddedVelocity.eqProd(rotShooterWorld, new DVector3(0, shootSpeed, 0));
 

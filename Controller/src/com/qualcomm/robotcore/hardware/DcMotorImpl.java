@@ -172,7 +172,7 @@ public class DcMotorImpl implements DcMotor {
      * Get actual speed
      * @return actual speed, in ticks per sec
      */
-    protected synchronized double getSpeed(){ return speed; }
+    public synchronized double getSpeed(){ return speed; } // Protected
 
     /**
      * For internal use only.

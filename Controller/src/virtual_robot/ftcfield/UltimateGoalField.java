@@ -244,6 +244,7 @@ public class UltimateGoalField extends FtcField {
     @Override
     public void preStepProcess() {
         for (int i = 0; i < rings.size(); i++) {
+//            System.out.println("Ring: " + rings.get(i).dBodyGetPosition());
             DVector3 ringPos = (DVector3) rings.get(i).dBodyGetPosition();
             double absX = Math.abs(ringPos.get0());
             double absY = Math.abs(ringPos.get1());

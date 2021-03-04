@@ -22,7 +22,7 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import javafx.util.Callback;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.opmodes.testing.UltimateBotDemo;
+import org.firstinspires.ftc.teamcode.opmodes.testing.thirdparty.UltimateBotDemo;
 import org.ode4j.ode.*;
 import org.reflections.Reflections;
 import virtual_robot.config.Config;
@@ -156,7 +156,8 @@ public class VirtualRobotController {
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
             for (DcMotor motor: hardwareMap.dcMotor) {
                 ((DcMotorImpl)motor).setRandomErrorFrac(sldRandomMotorError.getValue());
-                ((DcMotorImpl)motor).setSystematicErrorFrac(sldSystematicMotorError.getValue() * 2.0 * (0.5 - random.nextDouble()));
+//                ((DcMotorImpl)motor).setSystematicErrorFrac(sldSystematicMotorError.getValue() * 2.0 * (0.5 - random.nextDouble()));
+                ((DcMotorImpl)motor).setSystematicErrorFrac(0.001);
                 ((DcMotorImpl)motor).setInertia(1.0 - Math.pow(10.0, -sldMotorInertia.getValue()));
             }
         }
