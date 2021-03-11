@@ -36,7 +36,9 @@ public class LauncherErrorTests extends LinearOpMode {
         waitForStart();
 
         this.hardwareInterface.intakeMotor.setPower(1.0);
-        this.hardwareInterface.shooterMotor.setPower(0.8);
+        this.hardwareInterface.shooterMotor.setPower(0.0);
+
+        double shooterMotorPower = 0.0;
 
         while (opModeIsActive())
         {
@@ -70,7 +72,19 @@ public class LauncherErrorTests extends LinearOpMode {
                 this.hardwareInterface.shooterTrigServo.setPosition(0.0);
             }
 
+            if (gamepad1.dpad_up && shooterMotorPower < 1.0) {
+                shooterMotorPower += 0.001;
+            } else if (gamepad1.dpad_down && shooterMotorPower > -1.0) {
+                shooterMotorPower -= 0.001;
+            }
+
+            if (this.hardwareInterface.shooterMotor.getPower() != shooterMotorPower) {
+                this.hardwareInterface.shooterMotor.setPower(shooterMotorPower);
+            }
+
             // Finally just update telemetry.
+            telemetry.addData("Shooter Motor Power: ", shooterMotorPower);
+
             this.updateTelemetry();
 
 
