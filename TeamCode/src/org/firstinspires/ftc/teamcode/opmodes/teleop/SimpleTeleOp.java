@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="Teleop", group="Teleop")
 public class SimpleTeleOp extends LinearOpMode {
-
     // ------------------------------ //
     // Instance variables.
 
@@ -34,6 +33,10 @@ public class SimpleTeleOp extends LinearOpMode {
         this.hardwareInterface = new TeleOpMecanumHardwareInterface(hardwareMap);
 
         waitForStart();
+
+        this.hardwareInterface.intakeMotor.setPower(1.0);
+        this.hardwareInterface.shooterMotor.setPower(0.8);
+
         while (opModeIsActive())
         {
 
@@ -60,6 +63,11 @@ public class SimpleTeleOp extends LinearOpMode {
                     rightStickX
             );
 
+            if (gamepad1.a) {
+                this.hardwareInterface.shooterTrigServo.setPosition(1.0);
+            } else {
+                this.hardwareInterface.shooterTrigServo.setPosition(0.0);
+            }
 
             // Finally just update telemetry.
             this.updateTelemetry();
@@ -140,6 +148,4 @@ public class SimpleTeleOp extends LinearOpMode {
         this.hardwareInterface.driveRearLeft.setPower  (yDisplacement + rightStickX);
 
     }
-
-
 }
