@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "Simple Autonomous Park")
 public class SimpleAutonomousPark extends LinearOpMode {
@@ -24,8 +25,36 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
         this.deliverTargetC(false);
 
+        this.moveBackwards(55, 1);
+        this.moveLeft(25, 1);
+
+        this.launchRings(250, 0.73);
+
+        ElapsedTime elapsedTime = new ElapsedTime();
+        while (opModeIsActive()) {
+            if (elapsedTime.milliseconds() > 2000) break;
+        }
+
         hardwareInterface.setDriveMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+    }
+
+    private void launchRings(double interval, double power) {
+        AutonomousMecanumHardwareInterface hardwareInterface = new AutonomousMecanumHardwareInterface(hardwareMap);
+        hardwareInterface.shooterMotor.setPower(power);
+
+        for (int i = 0; i < 3; i++) {
+            hardwareInterface.shooterTrigServo.setPosition(0.0);
+            ElapsedTime elapsedTime = new ElapsedTime();
+            while (opModeIsActive()) {
+                if (elapsedTime.milliseconds() > interval) break;
+            }
+            hardwareInterface.shooterTrigServo.setPosition(1.0);
+            elapsedTime.reset();
+            while (opModeIsActive()) {
+                if (elapsedTime.milliseconds() > interval) break;
+            }
+        }
     }
 
     // ------------------------------ //
