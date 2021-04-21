@@ -71,5 +71,6 @@ public class AutonomousMecanumHardwareInterface {
         shooterTrigServo.setPosition(0.0);
         shooterMotor.setPower(launch);
         shooterTrigServo.setPosition(1.0);
+
     }
 }

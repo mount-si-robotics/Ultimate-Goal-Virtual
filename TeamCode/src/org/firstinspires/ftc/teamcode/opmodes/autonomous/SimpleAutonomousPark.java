@@ -23,12 +23,8 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
         AutonomousMecanumHardwareInterface hardwareInterface = new AutonomousMecanumHardwareInterface(hardwareMap);
 
-        this.deliverTargetC(false);
+        this.deliverTargetA(false);
 
-        this.moveBackwards(55, 1);
-        this.moveLeft(25, 1);
-
-        this.launchRings(250, 0.73);
 
         ElapsedTime elapsedTime = new ElapsedTime();
         while (opModeIsActive()) {
@@ -337,7 +333,13 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
         // Push the final goal to the top, then go down to park.
         this.moveForwards(115, speed);
-        this.moveBackwards(40, speed);
+        this.moveBackwards(60, speed);
+
+        // Go to launch rings then move back up.
+        this.moveHorizontal(30, speed, !blueAlliance);
+        this.launchRings(250, .67);
+        this.moveForwards(20, 1);
+
 
     }
     public void deliverTargetB(boolean blueAlliance){
@@ -371,7 +373,13 @@ public class SimpleAutonomousPark extends LinearOpMode {
 
         // Move the goal and park over the line.
         this.moveHorizontal(15, speed, !blueAlliance);
-        this.moveBackwards(20, speed);
+        this.moveBackwards(35, speed);
+
+        // Go to launch rings then move back up.
+        this.moveHorizontal(20, speed, !blueAlliance);
+        this.launchRings(250, .67);
+        this.moveForwards(20, 1);
+
 
     }
     public void deliverTargetA(boolean blueAlliance){
@@ -408,9 +416,12 @@ public class SimpleAutonomousPark extends LinearOpMode {
         this.moveForwards(70, speed);
         this.moveBackwards(10, speed);
 
-        // Park over the line.
+        // Shoot and park over the line.
         this.moveHorizontal(30, speed, !blueAlliance);
+        this.launchRings(250, .67);
         this.moveForwards(20, speed);
+
+
 
     }
 

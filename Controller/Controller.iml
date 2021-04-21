@@ -17,7 +17,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="org.reflections:reflections:0.9.11" level="project" />
     <orderEntry type="module" module-name="ODE4J" />
+    <orderEntry type="library" name="org.reflections:reflections:0.9.11" level="project" />
   </component>
 </module>
